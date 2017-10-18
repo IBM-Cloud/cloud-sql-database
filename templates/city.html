@@ -1,0 +1,29 @@
+{# Display information about a city. #}
+{# The app fetches the information from the database and passes it into this page in "ci". #}
+{% extends "base.html" %}
+{% block title %}City Information{% endblock %}
+{% block content %}
+
+{# Loop over cities if we have multiple results for popular names like Milan, Rome, Berlin #}
+{% for city in ci %}
+  <h1>{{city["NAME"]}}</h1>
+  <p>The city of <b>{{city["NAME"]}}</b> ({{city["ASCIINAME"]}}) is located in <b>{{city["COUNTRYCODE"]}}</b> within the timezone <b>{{city["TIMEZONE"]}}</b>.
+    It has a population of <b>{{city["POPULATION"]}}</b>. </p>
+  {# If there are alternate names, split them to format them nicely #}
+  {% if city["ALTERNATENAMES"] %}
+    The following alternative names are in use:
+    <p>{% set namelist = (city["ALTERNATENAMES"]).split(',') %}
+      {% for name in namelist %}
+      {{ name }} //
+      {% endfor %}</p>
+  {% endif %}
+
+  <h4>Location Information</h4>
+  <p>Latitude: {{city["LATITUDE"]}}<p>
+  <p>Longitude: {{city["LONGITUDE"]}}<p>
+  <p>Elevation: {{city["DEM"]}}</p>
+  <p>Map: <a href="http://www.openstreetmap.org/#map=13/{{city["LATITUDE"]}}/{{city["LONGITUDE"]}}">{{city["NAME"]}}</a></p>
+
+
+{% endfor %}
+{% endblock %}

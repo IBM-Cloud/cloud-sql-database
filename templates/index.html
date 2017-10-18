@@ -1,0 +1,14 @@
+{# index page, providing a form to submit a city name #}
+{% extends "base.html" %}
+{% block title %}World Cities{% endblock %}
+{% block content %}
+<h1>Hello Cities of the World!</h1>
+<p>This app is named "{{ app["application_name"] }}". You can search for information on cities with a population over 1000. Use the local name.
+As an alternative, you can directly access city information using "/city/name", e.g., <a href="/city/Friedrichshafen">/city/Friedrichshafen</a>.</p>
+<br>
+<p>
+ <form action="/search" method="get">
+  City: <input type="text" name="name" maxlength="200" width="60"> <input type="submit" value="Search">
+</form>
+</p>
+{% endblock %}
