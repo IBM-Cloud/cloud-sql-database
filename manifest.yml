@@ -1,0 +1,4 @@
+applications:
+- name: worldcities
+  memory: 256M
+  command: python worldcities.py
