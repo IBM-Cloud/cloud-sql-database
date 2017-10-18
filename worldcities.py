@@ -28,7 +28,7 @@ db2conn = ibm_db.connect("DATABASE="+db2cred['db']+";HOSTNAME="+db2cred['hostnam
 def city(name=None):
     if db2conn:
         # we have a Db2 connection, query the database
-        sql="select * from cities2 where name=? order by population desc"
+        sql="select * from cities where name=? order by population desc"
         # Note that for security reasons we are preparing the statement first,
         # then bind the form input as value to the statement to replace the
         # parameter marker.
