@@ -1,6 +1,8 @@
 # IBM Cloud SQL Database
 This tutorial shows how to provision a SQL (relational) database service, create a table and load a larger data set, city informationy into the database. Thereafter, we deploy a web app "worldcities" to make use of that data and show how to access the cloud database. The app is written in Python using the [Flask framework](http://flask.pocoo.org/).
 
+This tutorial is part of [IBM Cloud tutorials](https://console.bluemix.net/docs/tutorials/index.html) and discussed as [SQL Database for Cloud Data](https://console.bluemix.net/docs/tutorials/sql-database.html).
+
 # Up and running in few steps
 To get this SQL database-backed app up and running only few steps and about 10 minutes are needed. We will provsion the database service, create a table, load some data, then push the app to the IBM Cloud.
 
