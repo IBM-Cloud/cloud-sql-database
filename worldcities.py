@@ -25,7 +25,7 @@ else:
 # handle database request and query city information
 def city(name=None):
     # connect to DB2
-    db2conn = ibm_db.connect("DATABASE="+db2cred['db']+";HOSTNAME="+db2cred['hostname']+";PORT="+str(db2cred['port'])+";UID="+db2cred['username']+";PWD="+db2cred['password']+";","","")
+    db2conn = ibm_db.connect(db2cred['ssldsn'], "","")
     if db2conn:
         # we have a Db2 connection, query the database
         sql="select * from cities where name=? order by population desc"
