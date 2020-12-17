@@ -46,6 +46,9 @@ def city(name=None):
           ibm_db.close(db2conn)
       return render_template('city.html', ci=rows)
     except:
+      app.logger.error('could not establish Db2 connection')
+      errorMsg = ibm_db.conn_errormsg()
+      app.logger.error(errorMsg)
       return render_template('city.html', ci=[]) 
 
 
