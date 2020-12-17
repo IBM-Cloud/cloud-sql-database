@@ -25,25 +25,29 @@ else:
 # handle database request and query city information
 def city(name=None):
     # connect to DB2
-    db2conn = ibm_db.connect(db2cred['ssldsn'], "","")
-    if db2conn:
-        # we have a Db2 connection, query the database
-        sql="select * from cities where name=? order by population desc"
-        # Note that for security reasons we are preparing the statement first,
-        # then bind the form input as value to the statement to replace the
-        # parameter marker.
-        stmt = ibm_db.prepare(db2conn,sql)
-        ibm_db.bind_param(stmt, 1, name)
-        ibm_db.execute(stmt)
-        rows=[]
-        # fetch the result
-        result = ibm_db.fetch_assoc(stmt)
-        while result != False:
-            rows.append(result.copy())
-            result = ibm_db.fetch_assoc(stmt)
-        # close database connection
-        ibm_db.close(db2conn)
-    return render_template('city.html', ci=rows)
+    rows=[]
+    try:
+      db2conn = ibm_db.connect(db2cred['ssldsn'], "","")
+      if db2conn:
+          # we have a Db2 connection, query the database
+          sql="select * from cities where name=? order by population desc"
+          # Note that for security reasons we are preparing the statement first,
+          # then bind the form input as value to the statement to replace the
+          # parameter marker.
+          stmt = ibm_db.prepare(db2conn,sql)
+          ibm_db.bind_param(stmt, 1, name)
+          ibm_db.execute(stmt)
+          # fetch the result
+          result = ibm_db.fetch_assoc(stmt)
+          while result != False:
+              rows.append(result.copy())
+              result = ibm_db.fetch_assoc(stmt)
+          # close database connection
+          ibm_db.close(db2conn)
+      return render_template('city.html', ci=rows)
+    except:
+      return "Db2 connection issues"
+
 
 # main page to dump some environment information
 @app.route('/')
