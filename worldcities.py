@@ -46,7 +46,7 @@ def city(name=None):
           ibm_db.close(db2conn)
       return render_template('city.html', ci=rows)
     except:
-      return "Db2 connection issues"
+      return render_template('city.html', ci=[]) 
 
 
 # main page to dump some environment information
