@@ -1,4 +1,4 @@
-# (C) 2017 IBM
+# (C) 2017-2022 IBM
 # Author: Henrik Loeser
 #
 # Very short sample app used with Db2 Warehouse on Cloud to demonstrate
@@ -12,22 +12,27 @@ import datetime
 import json
 import ibm_db
 
+# for loading .env
+from dotenv import load_dotenv
+
+# load environment
+load_dotenv()
+
 app = Flask(__name__)
 
 # get service information if on IBM Cloud Platform
-if 'VCAP_SERVICES' in os.environ:
-    db2info = json.loads(os.environ['VCAP_SERVICES'])['dashDB'][0]
-    db2cred = db2info["credentials"]
-    appenv = json.loads(os.environ['VCAP_APPLICATION'])
+if 'DASHDB_SSLDSN' in os.environ:
+    db2cred = os.getenv('DASHDB_SSLDSN')
 else:
-    raise ValueError('Expected cloud environment')
+    # log error, but continue - it might be before service binding
+    app.logger.error('No Db2 credentials configured.')
 
 # handle database request and query city information
 def city(name=None):
     # connect to DB2
     rows=[]
     try:
-      db2conn = ibm_db.connect(db2cred['ssldsn'], "","")
+      db2conn = ibm_db.connect(db2cred, "","")
       if db2conn:
           # we have a Db2 connection, query the database
           sql="select * from cities where name=? order by population desc"
@@ -55,7 +60,7 @@ def city(name=None):
 # main page to dump some environment information
 @app.route('/')
 def index():
-   return render_template('index.html', app=appenv)
+   return render_template('index.html')
 
 # for testing purposes - use name in URI
 @app.route('/hello/<name>')
