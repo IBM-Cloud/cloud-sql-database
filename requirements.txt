@@ -1,2 +1,4 @@
-Flask
-ibm_db
+Flask==2.0.3
+gunicorn
+ibm_db == 3.1.2
+python-dotenv==0.15.0
