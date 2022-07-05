@@ -1,3 +1,5 @@
+**Note**: A former version of the tutorial deployed the app to Cloud Foundry Public on IBM Cloud. You can find the material in the [branch **cloudfoundry**](https://github.com/IBM-Cloud/cloud-sql-database/tree/cloudfoundry).
+
 # IBM Cloud SQL Database
 This tutorial shows how to provision a SQL (relational) database service, create a table and load a larger data set, city information into the database. Thereafter, we deploy a web app "worldcities" to make use of that data and show how to access the cloud database. The app is written in Python using the Flask framework.
 
@@ -5,22 +7,6 @@ This tutorial is part of [IBM Cloud tutorials](https://cloud.ibm.com/docs/tutori
 
 # Up and running in few steps
 To get this SQL database-backed app up and running only few steps and about 10 minutes are needed. Please follow the steps outlined in the IBM Cloud tutorial.
-
-On the command line:
-1. Log in to IBM Cloud
-2. Target the right region and resource group
-3. Create a new Code Engine project
-4. Select the project
-5. Configure a container registry
-6. Build
-7. create app
-8. bind service
-
-Test.
-
-Code Engine browser UI:
-1. tbd
-
 
 # Local testing
 
