@@ -10,6 +10,11 @@ This tutorial is part of [IBM Cloud tutorials](https://cloud.ibm.com/docs/tutori
 # Up and running in few steps
 To get this SQL database-backed app up and running only few steps and about 10 minutes are needed. Please follow the steps outlined in the IBM Cloud tutorial.
 
+To build your own container image and use it for the app, there different options available.
+- Use `docker build` locally, then push the image to a [container registry and deploy it from there](https://cloud.ibm.com/docs/codeengine?topic=codeengine-deploy-app-crimage).
+- Utilize [Code Engine and its build / buildrun feature](https://cloud.ibm.com/docs/codeengine?topic=codeengine-build-standalone).
+- Use another build tool to create the container image and make it available in a public or private container registry. Deploy it from there to Code Engine.
+
 # Local testing
 
 - Install the requirements to run Python directly or build and run the container image.
